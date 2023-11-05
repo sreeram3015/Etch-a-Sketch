@@ -1,40 +1,24 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const container = document.querySelector('.container');
+const container = document.getElementById('sketch-grid');
+let gridSize = 16;
+createGrid(gridSize);
 
-    function createGrid(size) {
-        container.innerHTML = '';
-        container.style.setProperty("--grid-size", size);
-
-        for (let i = 0; i < size * size; i++) {
-            const square = document.createElement("div");
-            square.classList.add("square");
-            container.appendChild(square);
-        }
+function createGrid(size) {
+    for (let i = 0; i < size * size; i++) {
+        const div = document.createElement('div');
+        div.addEventListener('mouseover', changeColor);
+        container.appendChild(div);
     }
+    container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+}
 
-    function resetGrid() {
-        let squaresPerSide = prompt("Enter the number of squares per side for the new grid: ");
+function changeColor(e) {
+    e.target.style.backgroundColor = '#fff';
+}
 
-        if (squaresPerSide !== null && squaresPerSide !== "" && squaresPerSide !== "0" && !isNaN(squaresPerSide)) {
-            squaresPerSide = parseInt(squaresPerSide);
-            createGrid(squaresPerSide);
-        }
-    }
-
-    createGrid(16);
-
-    container.addEventListener("mouseover", function(e) {
-        if (e.target.classList.contains("square")) {
-            e.target.style.backgroundColor = "black";
-        }
-    });
-
-    container.addEventListener("mouseout", function(e) {
-        if (e.target.classList.contains("square")) {
-            e.target.style.backgroundColor = "";
-        }
-    });
-
-    const resetButton = document.getElementById("newGrid");
-    resetButton.addEventListener("click", resetGrid);
-});
+function resetGrid() {
+    container.innerHTML = '';
+    gridSize = prompt('Choose a new grid size (1-64):');
+    gridSize = Math.min(Math.max(gridSize, 1), 64);
+    createGrid(gridSize);
+}
