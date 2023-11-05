@@ -1,3 +1,10 @@
+.box{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
 #sketch-grid {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
@@ -5,7 +12,7 @@
     gap: 1px;
     background-color: #fff;
     border: 1px solid #000;
-    margin-top: 20px;
+    margin-top: 25px;
     width: 400px;
     height: 400px;
 }
@@ -16,9 +23,89 @@
 }
 
 button {
-    margin-top: 20px;
+    margin: 20px;
 }
 
 h1 {
     text-align: center;
+}
+
+button {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    /*   padding: 2em 0em; */
+}
+
+.btn-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: #FFF;
+    padding: 3px 10px;
+}
+
+.btn {
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    text-decoration: none;
+}
+
+/*btn_background*/
+.effect01 {
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.effect01:hover {
+    background-color: #FFF;
+    box-shadow: 0px 0px 0px 4px #EEE inset;
+}
+
+/*btn_text*/
+.effect01 span {
+    transition: all 0.2s ease-out;
+    z-index: 2;
+}
+
+.effect01:hover span {
+    letter-spacing: 0.13em;
+    color: #333;
+}
+
+/*highlight*/
+.effect01:after {
+    content: "";
+    height: 155px;
+    left: -75px;
+    opacity: .8;
+    position: absolute;
+    top: -50px;
+    -webkit-transform: rotate(35deg);
+    transform: rotate(35deg);
+    width: 50px;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    /*easeOutCirc*/
+    z-index: 1;
+}
+
+.effect01:hover:after {
+    opacity: 0;
+    left: 120%;
+    -webkit-transform: rotate(40deg);
+    transform: rotate(40deg);
 }
